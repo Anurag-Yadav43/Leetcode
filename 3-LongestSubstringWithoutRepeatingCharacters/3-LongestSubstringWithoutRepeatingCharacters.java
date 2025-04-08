@@ -1,4 +1,4 @@
-// Last updated: 4/4/2025, 3:44:51 PM
+// Last updated: 4/8/2025, 1:38:12 PM
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s.length() == 0){
