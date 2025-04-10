@@ -1,25 +1,24 @@
-// Last updated: 4/10/2025, 6:13:27 PM
+// Last updated: 4/10/2025, 6:43:00 PM
 class Solution {
     public int findKthPositive(int[] arr, int k) {
-        int num =1;
-        int n = arr.length;
-        int i = 0;
-        while(i < n && k > 0){
-            if(arr[i] == num){
-                i++;
+        int n= arr.length;
+        int l =0, r = n-1;
+
+        while(l <= r){
+            int mid = l  + (r-l)/2;
+
+            int kitne_missing_till_mid = arr[mid] - (mid+1);
+
+            if(kitne_missing_till_mid < k){
+                l = mid +1;
+
             }
             else{
-                k--;
+                r = mid -1;
             }
 
-            num++;
-
-        }
-        while(k > 0){
-            k--;
-            num++;
         }
 
-        return num-1;
+        return l+k;
     }
 }
