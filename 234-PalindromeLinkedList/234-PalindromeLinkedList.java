@@ -1,3 +1,4 @@
+// Last updated: 4/15/2025, 1:12:19 PM
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -10,44 +11,32 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) return true; // Edge case
-        
-        // Step 1: Find the middle of the list
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
+        List<Integer> arr = new ArrayList<>();
+        int index = 0; 
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null){
+            arr.add(index,slow.val );
+            index++;
             slow = slow.next;
             fast = fast.next.next;
         }
+        if(fast != null){
+            slow = slow.next;
+        }
 
-        // Step 2: Reverse the second half of the list
-        ListNode secondHalf = reverseList(slow);
-
-        // Step 3: Compare first half and reversed second half
-        ListNode firstHalf = head;
-        ListNode temp = secondHalf; // To restore list later
-        while (secondHalf != null) {
-            if (firstHalf.val != secondHalf.val) {
-                return false; // Not a palindrome
+        int i =arr.size()-1;
+        while(slow != null && i >= 0){
+            if(arr.get(i) == slow.val){
+                slow = slow.next;
+                i--;
             }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+            else return false;
         }
 
-        // (Optional) Step 4: Restore the list back to original
-        reverseList(temp);
+        return true;
 
-        return true; // It's a palindrome
-    }
 
-    // Helper function to reverse a linked list
-    private ListNode reverseList(ListNode head) {
-        ListNode prev = null, current = head;
-        while (current != null) {
-            ListNode nextNode = current.next;
-            current.next = prev;
-            prev = current;
-            current = nextNode;
-        }
-        return prev;
+
     }
 }
