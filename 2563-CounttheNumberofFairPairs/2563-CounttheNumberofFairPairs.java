@@ -1,7 +1,7 @@
-// Last updated: 4/19/2025, 5:58:32 PM
+// Last updated: 4/19/2025, 6:34:43 PM
 class Solution {
     public long countFairPairs(int[] nums, int lower, int upper) {
-       int n = nums.length;
+        int n = nums.length;
         Arrays.sort(nums);
         
         long ans = 0;
@@ -29,5 +29,6 @@ class Solution {
             else end = mid;
         }
         return start; 
+    
     }
 }
