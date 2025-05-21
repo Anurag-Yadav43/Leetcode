@@ -1,7 +1,37 @@
-// Last updated: 5/22/2025, 1:05:32 AM
+// Last updated: 5/22/2025, 1:19:56 AM
 class Solution {
     public void setZeroes(int[][] matrix) {
         int m = matrix.length;
+        int n = matrix[0].length;
+
+        boolean[] row = new boolean[m];
+        boolean[] column = new boolean[n];
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j] == 0){
+                    row[i] = true;
+                    column[j] = true;
+                }
+            }
+        }
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(row[i] || column[j]){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
+
+/*
+//brute force
+    //Approch-1 (Using extra space of m*n)
+    //T.C : O(m*n*(m+n))
+    //S.C : O(m*n)
+int m = matrix.length;
         int n = matrix[0].length;
         int[][] result = new int[m][n];
         for(int i=0;i<m;i++){
@@ -31,4 +61,6 @@ class Solution {
         }
 
     }
-}
+    
+
+*/
